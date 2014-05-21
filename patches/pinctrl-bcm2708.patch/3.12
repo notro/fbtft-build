@@ -1,0 +1,30 @@
+diff --git a/arch/arm/mach-bcm2708/Kconfig b/arch/arm/mach-bcm2708/Kconfig
+index b85bb8d..c377ad0 100644
+--- a/arch/arm/mach-bcm2708/Kconfig
++++ b/arch/arm/mach-bcm2708/Kconfig
+@@ -17,6 +17,15 @@ config BCM2708_GPIO
+ 	help
+ 	  Include support for the Broadcom(R) BCM2708 gpio.
+ 
++config PINCTRL_BCM2708
++	bool "BCM2708 pinctrl driver"
++	depends on OF && BCM2708_GPIO
++	select PINCTRL
++	select PINMUX
++	select PINCONF
++	help
++	  Add pinmux and pinconf functionality to bcm2708_gpio
++
+ config BCM2708_VCMEM
+ 	bool "Videocore Memory"
+ 	depends on MACH_BCM2708
+diff --git a/arch/arm/mach-bcm2708/Makefile b/arch/arm/mach-bcm2708/Makefile
+index 0da162c..5087c13 100644
+--- a/arch/arm/mach-bcm2708/Makefile
++++ b/arch/arm/mach-bcm2708/Makefile
+@@ -4,4 +4,5 @@
+ 
+ obj-$(CONFIG_MACH_BCM2708) 	+= clock.o bcm2708.o armctrl.o vcio.o power.o dma.o
+ obj-$(CONFIG_BCM2708_GPIO)	+= bcm2708_gpio.o
++obj-$(CONFIG_PINCTRL_BCM2708)	+= pinctrl-bcm2708.o
+ obj-$(CONFIG_BCM2708_VCMEM)	+= vc_mem.o
