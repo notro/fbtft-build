@@ -1,5 +1,5 @@
 package :fbtft_tools do
-  git 'https://github.com/notro/fbtft_tools', 'fbtft_tools'
+  github_tarball 'notro/fbtft_tools', 'fbtft_tools'
 end
 
 package :mouse_gpio => :fbtft_tools do

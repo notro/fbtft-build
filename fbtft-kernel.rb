@@ -1,10 +1,11 @@
+require 'stdlib/base'
 require 'stdlib/rpi-linux'
 require 'fbtft-build/fbtft'
 require 'fbtft-build/fbtft_tools'
 
 # DMA capable SPI master driver
 package :spi_bcm2708_dma do
-  git 'https://github.com/notro/spi-bcm2708', 'spi-bcm2708-dma'
+  github_tarball 'notro/spi-bcm2708', 'spi-bcm2708-dma'
 
   task :patch do
     cp workdir('spi-bcm2708-dma/spi-bcm2708.c'), workdir('linux/drivers/spi')
@@ -13,7 +14,7 @@ end
 
 
 package :spi_config do
-  git 'https://github.com/msperl/spi-config', 'spi-config'
+  github_tarball 'msperl/spi-config', 'spi-config'
 
   task :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'spi-config'} modules modules_install"
@@ -22,7 +23,7 @@ end
 
 
 package :fdt_loader do
-  git 'https://github.com/notro/fdt_loader', 'fdt_loader'
+  github_tarball 'notro/fdt_loader', 'fdt_loader'
 
   task :patch do
 		cp workdir('fdt_loader/fdt_loader.c'), workdir('linux/drivers/misc/')
