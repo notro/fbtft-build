@@ -1,5 +1,5 @@
 package :fbtft do
-  git "https://github.com/notro/fbtft", "fbtft"
+  github_tarball "notro/fbtft", "fbtft"
 
   if ENV['FBTFT_KERNEL_CONFIG']
     config 'FB_TFT', ENV['FBTFT_KERNEL_CONFIG'], ENV['FBTFT_KERNEL_CONFIG']
