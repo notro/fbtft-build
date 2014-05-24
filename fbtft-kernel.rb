@@ -59,7 +59,7 @@ package :pitft => [:fbtft_tools, :gpio_backlight] do
 end
 
 
-package :fbtft_kernel_common => [:rpi_tools, :rpi_firmware, :rpi_linux, :spi_bcm2708_dma, :fbtft, :spi_config, :fdt_loader, :pitft, :ads7846, :keyboard_gpio, :mouse_gpio] do
+package :fbtft_kernel_common => [:issue106, :rpi_tools, :rpi_firmware, :rpi_linux, :spi_bcm2708_dma, :fbtft, :spi_config, :fdt_loader, :pitft, :ads7846, :keyboard_gpio, :mouse_gpio] do
 
   # All console fonts as builtins and rotation
   config(["FONTS", "FRAMEBUFFER_CONSOLE_ROTATION"], :enable, 'y')
