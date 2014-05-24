@@ -1,0 +1,20 @@
+/*
+ * Enable the I2C controller
+ */
+
+/include/ "bcm2708.dtsi"
+
+&i2c1 {
+	status = "okay";
+};
+
+&gpio {
+	pinctrl-names = "default";
+	pinctrl-1 = <&i2c1_pins>;
+
+	i2c1_pins: i2c1 {
+		brcm,pins = <2 3>;
+		brcm,function = <4>; /* alt0 */
+	};
+
+};

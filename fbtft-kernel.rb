@@ -37,12 +37,17 @@ package :fdt_loader do
   patch 'fdt_loader.patch'
   patch 'pinctrl-bcm2708.patch'
 
-#dts = Devicetrees(self.patches.path + "/dts", self.linux.workdir + "/scripts/dtc/dtc")
+  target :build do
+    dst = workdir 'modules/lib/firmware'
+    mkdir_p dst unless File.exists? dst
+    cp FileList['dts/*'], dst
+    FileList["#{dst}/*.dts"].each do |dts|
+      dtb = File.basename(dts, File.extname(dts)) + '.dtb'
+      sh "cd #{File.dirname dts} && #{workdir 'linux/scripts/dtc/dtc'} -O dtb -o #{dtb} -I dts #{dts}"
+    end
+  end
+
 end
-
-#		heading("Devicetree")
-#		self.dts.install(self.modules_tmp + "/lib/firmware")
-
 
 
 package :pitft => [:fbtft_tools, :gpio_backlight] do
