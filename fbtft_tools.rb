@@ -40,8 +40,8 @@ end
 
 
 package :gpio_backlight => :fbtft_tools do
-  ENV['GPIO_BACKLIGHT_CONFIG'] ||= 'module'
-  config 'BACKLIGHT_GPIO', ENV['GPIO_BACKLIGHT_CONFIG']
+  VAR['GPIO_BACKLIGHT_CONFIG'] ||= 'module'
+  config 'BACKLIGHT_GPIO', VAR['GPIO_BACKLIGHT_CONFIG']
 
   # backported to 3.10
   patch 'gpio_backlight.patch'
