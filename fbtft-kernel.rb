@@ -65,15 +65,18 @@ end
 
 
 package :fbtft_kernel_common => [:issue106, :rpi_tools, :rpi_firmware, :rpi_linux, :spi_bcm2708_dma, :fbtft, :spi_config, :fdt_loader, :pitft, :ads7846, :keyboard_gpio, :mouse_gpio] do
+  ENV['FBTFT_KERNEL_CONFIG'] ||= 'm'
+
+  config "DYNAMIC_DEBUG", :enable
 
   # All console fonts as builtins and rotation
-  config(["FONTS", "FRAMEBUFFER_CONSOLE_ROTATION"], :enable, 'y')
+  config ["FONTS", "FRAMEBUFFER_CONSOLE_ROTATION"], :enable, 'y'
 
   # "Bitbanged SPI bus"
-  config('CONFIG_SPI_GPIO', :module)
+  config 'CONFIG_SPI_GPIO', :module
   
   # "MCP23S08/MCP23S17/MCP23008/MCP23017"
-  config('CONFIG_GPIO_MCP23S08', :module)
+  config 'CONFIG_GPIO_MCP23S08', :module
 
   # for 3.10
   patch 'mach-bcm2708-Reserve-64-IRQs-for-peripherals.patch'
