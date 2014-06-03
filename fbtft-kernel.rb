@@ -37,7 +37,7 @@ package :fdt_loader do
   patch 'fdt_loader.patch'
   patch 'pinctrl-bcm2708.patch'
 
-  target :build do
+  target :kbuild do
     dst = workdir 'modules/lib/firmware'
     mkdir_p dst unless File.exists? dst
     cp FileList['dts/*'], dst
