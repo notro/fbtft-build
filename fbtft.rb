@@ -9,5 +9,5 @@ package :fbtft do
   d = file_create workdir 'linux/drivers/video/fbtft' do |t|
     ln_s workdir('fbtft'), t.name
   end
-  task :patch => d.name
+  target :patch => d.name
 end

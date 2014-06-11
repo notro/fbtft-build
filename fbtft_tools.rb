@@ -6,7 +6,7 @@ package :mouse_gpio => :fbtft_tools do
   config 'INPUT_MOUSE', :enable, 'n'
   config 'MOUSE_GPIO', :module
 
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/gpio_mouse_device'} modules modules_install"
   end
 end
@@ -16,7 +16,7 @@ package :keyboard_gpio => :fbtft_tools do
   config 'INPUT_KEYBOARD', :enable, 'n'
   config 'KEYBOARD_GPIO', :module
 
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/gpio_keys_device'} modules modules_install"
   end
 end
@@ -26,14 +26,14 @@ package :ads7846 => :fbtft_tools do
   config 'INPUT_TOUCHSCREEN', :enable, 'n'
   config 'TOUCHSCREEN_ADS7846', :module
 
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/ads7846_device'} modules modules_install"
   end
 end
 
 
 package :rpi_power_switch => :fbtft_tools do
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/rpi_power_switch'} modules modules_install"
   end
 end
@@ -51,7 +51,7 @@ package :gpio_backlight => :fbtft_tools do
   #   2014-05-19 15:50 => Applied, thanks.
   patch 'gpio_backlight-gpio-can-sleep.patch'
 
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/gpio_backlight_device'} modules modules_install"
   end
 end

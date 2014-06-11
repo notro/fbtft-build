@@ -7,7 +7,7 @@ require 'fbtft-build/fbtft_tools'
 package :spi_bcm2708_dma do
   github_tarball 'notro/spi-bcm2708', 'spi-bcm2708-dma'
 
-  task :patch do
+  target :patch do
     cp workdir('spi-bcm2708-dma/spi-bcm2708.c'), workdir('linux/drivers/spi')
   end
 end
@@ -16,7 +16,7 @@ end
 package :spi_config do
   github_tarball 'msperl/spi-config', 'spi-config'
 
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'spi-config'} modules modules_install"
   end
 end
@@ -25,7 +25,7 @@ end
 package :fdt_loader do
   github_tarball 'notro/fdt_loader', 'fdt_loader'
 
-  task :patch do
+  target :patch do
 		cp workdir('fdt_loader/fdt_loader.c'), workdir('linux/drivers/misc/')
     cp workdir('fdt_loader/pinctrl-bcm2708.c'), workdir('linux/arch/arm/mach-bcm2708/')
   end
@@ -58,7 +58,7 @@ package :pitft => [:fbtft_tools, :gpio_backlight] do
 
   patch 'stmpe-ts-Various-fixes.patch'
 
-  task :external do
+  target :external do
     sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/stmpe_device'} modules modules_install"
   end
 end
