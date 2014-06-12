@@ -6,8 +6,12 @@ package :fbtft do
   end
 
   patch 'fbtft.patch'
-  d = file_create workdir 'linux/drivers/video/fbtft' do |t|
-    ln_s workdir('fbtft'), t.name
+
+  target :patch do
+    if LinuxVersion.new(ENV['LINUX_KERNEL_VERSION']) >= LinuxVersion.new('3.15')
+      ln_s workdir('fbtft'), workdir('linux/drivers/video/fbdev/fbtft')
+    else
+      ln_s workdir('fbtft'), workdir('linux/drivers/video/fbtft')
+    end
   end
-  target :patch => d.name
 end
