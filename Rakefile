@@ -8,6 +8,7 @@ end
 # this first action executes before invoking prerequisites
 release :fbtft_builtin => :fbtft_kernel_common do
   ENV['FBTFT_KERNEL_CONFIG'] = 'y'
+  VAR['FW_BRANCH'] = 'builtin'
 end
 # this action executes as normally after invoking prerequisites
 release :fbtft_builtin do
