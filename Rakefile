@@ -1,6 +1,8 @@
 require 'fbtft-build/fbtft-kernel'
 
-release :fbtft_master => :fbtft_kernel_common
+release :fbtft_master => :fbtft_kernel_common do
+  ENV['FBTFT_KERNEL_CONFIG'] = 'm'
+end
 
 
 # this first action executes before invoking prerequisites
@@ -14,8 +16,9 @@ release :fbtft_builtin do
 end
 
 
-release :fbtft_next => :fbtft_kernel_common do
-  TODO
-end
-release :fbtft_next do
+release :fbtft_latest => :fbtft_kernel_common do
+  ENV['FBTFT_KERNEL_CONFIG'] = 'm'
+  VAR['RASPBERRYPI_LINUX_BRANCH'] = raspberrypi_linux_latest
+  info "RASPBERRYPI_LINUX_BRANCH = #{ENV['RASPBERRYPI_LINUX_BRANCH']}"
+  VAR['FW_BRANCH'] = 'latest'
 end
