@@ -35,7 +35,7 @@ package :pitft => [:fbtft_tools, :gpio_backlight] do
 end
 
 
-package :fbtft_kernel_common => [:rpi_linux_common, :spi_bcm2708_dma, :fbtft,
+package :fbtft_kernel_common => [:rpi_linux_common, :spi_bcm2708_dma, :fbtft, :rpi_power_switch,
                                  :spi_config, :pitft, :ads7846, :keyboard_gpio, :mouse_gpio] do
   ENV['FBTFT_KERNEL_CONFIG'] ||= 'm'
 
