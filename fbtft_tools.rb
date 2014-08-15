@@ -46,9 +46,7 @@ package :gpio_backlight => :fbtft_tools do
   # backported to 3.10
   patch 'gpio_backlight.patch'
 
-  # maybe this is in by 3.15?
-  # backlight: gpio-backlight: Fix warning when the GPIO is on a I2C chip
-  #   2014-05-19 15:50 => Applied, thanks.
+  # exists in 3.16
   patch 'gpio_backlight-gpio-can-sleep.patch'
 
   target :external do
