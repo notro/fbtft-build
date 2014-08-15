@@ -21,17 +21,25 @@ package :spi_config do
 end
 
 
-package :pitft => [:fbtft_tools, :gpio_backlight] do
+# irq_base can't be set from 3.16, so it won't work in it's current state.
+# mfd: stmpe: root out static GPIO and IRQ assignments
+# https://github.com/torvalds/linux/commit/9e9dc7d9597bd6881b3e7ae6ae3d710319605c47
+package :stmpe_device => :fbtft_tools do
+  target :external do
+    if LinuxVersion.new(VAR['KERNEL_RELEASE']) < LinuxVersion.new('3.16')
+      sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/stmpe_device'} modules modules_install"
+    end
+  end
+end
+
+
+package :pitft => [:stmpe_device, :gpio_backlight] do
   config 'INPUT_TOUCHSCREEN', :enable, 'n'
   config 'MFD_STMPE', :enable, ''
   config ['STMPE_SPI', 'GPIO_STMPE'], :enable
   config 'TOUCHSCREEN_STMPE', :module
 
   patch 'stmpe-ts-Various-fixes.patch'
-
-  target :external do
-    sh make "INSTALL_MOD_PATH=#{workdir 'modules'} M=#{workdir 'fbtft_tools/stmpe_device'} modules modules_install"
-  end
 end
 
 
