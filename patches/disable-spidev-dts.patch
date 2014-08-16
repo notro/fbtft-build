@@ -1,0 +1,20 @@
+diff --git a/arch/arm/boot/dts/bcm2708-rpi-b.dts b/arch/arm/boot/dts/bcm2708-rpi-b.dts
+index 5893122..dfb7ba1 100644
+--- a/arch/arm/boot/dts/bcm2708-rpi-b.dts
++++ b/arch/arm/boot/dts/bcm2708-rpi-b.dts
+@@ -39,6 +39,7 @@
+ 		reg = <0>;	/* CE0 */
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		status = "disabled";
+ 		spi-max-frequency = <500000>;
+ 	};
+ 
+@@ -47,6 +48,7 @@
+ 		reg = <1>;	/* CE1 */
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		status = "disabled";
+ 		spi-max-frequency = <500000>;
+ 	};
+ };
