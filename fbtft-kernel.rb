@@ -43,6 +43,17 @@ package :pitft => [:stmpe_device, :gpio_backlight] do
 end
 
 
+package :fbtft_overlays do
+  target :kmodules do
+    fl = FileList["#{workdir('linux/drivers/video/fbdev/fbtft/dts/overlays/rpi/*overlay.dts')}"]
+    unless fl.empty?
+      mkdir_p workdir('overlays')
+      cp fl, workdir('overlays')
+    end
+  end
+end
+
+
 package :fbtft_kernel_common => [:rpi_linux_common, :spi_bcm2708_dma, :fbtft, :rpi_power_switch,
                                  :spi_config, :pitft, :ads7846, :keyboard_gpio, :mouse_gpio] do
   ENV['FBTFT_KERNEL_CONFIG'] ||= 'm'
